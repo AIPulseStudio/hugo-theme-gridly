@@ -1,37 +1,89 @@
+{{- $title := .Site.Params.home.standings_title | default "League Standings" -}}
+{{- $standings := .Site.Params.home.standings -}}
+{{- if not $standings -}}
+{{- with .Site.Data.standings -}}
+{{- $league := $.Site.Params.league -}}
+{{- if $league -}}
+{{- $standings = where . "league" $league -}}
+{{- else -}}
+{{- $standings = . -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
 <div class="sidebar-widget">
-    <h3 class="widget-title">League Standings</h3>
-    <div class="standings-list">
-        {{ with .Site.Data.standings }}
-        {{ range first 5 (where . "league" $.Site.Params.league) }}
-        <div class="standing-item">
-            <span class="pos">{{ .pos }}</span>
-            <span class="team">{{ .team }}</span>
-            <span class="pts">{{ .pts }}</span>
+    <h3 class="widget-title">{{ $title }}</h3>
+    <div class="standings-compact">
+        {{ range first 8 $standings }}
+        {{- $pos := .pos | int -}}
+        <div class="s-item s-{{ $pos }}">
+            <span class="s-pos">{{ $pos }}</span>
+            <span class="s-team">{{ .team }}</span>
+            <span class="s-pts">{{ .pts }}</span>
         </div>
         {{ end }}
+        {{ if not $standings }}
+        <div class="placeholder-stat">No standings data</div>
         {{ end }}
-        <div class="placeholder-stat">Placeholder Standings</div>
     </div>
 </div>
 
 <style>
-    .sidebar-widget {
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
+    .standings-compact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
-    .widget-title {
+    .s-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0.6rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        background: var(--bg-light, #f5f8fa);
+    }
+
+    .s-pos {
+        background: var(--border, #e0e6ed);
+        color: var(--gray, #6c757d);
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        font-weight: 700;
         font-size: 0.8rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--gray);
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--primary);
+        flex-shrink: 0;
+    }
+
+    .s-1 .s-pos {
+        background: var(--accent, #FFD700);
+        color: var(--dark, #1a1a2e);
+    }
+
+    .s-2 .s-pos,
+    .s-3 .s-pos,
+    .s-4 .s-pos {
+        background: var(--primary, #004D98);
+        color: white;
+    }
+
+    .s-team {
+        flex: 1;
+        font-weight: 600;
+        color: var(--dark, #1a1a2e);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .s-pts {
+        font-weight: 700;
+        color: var(--primary, #004D98);
+        font-size: 0.9rem;
+        flex-shrink: 0;
     }
 
     .placeholder-stat {
