@@ -16,8 +16,10 @@
                         <div class="row-thumb">
                             {{ if .Params.images }}
                             <img src="{{ index .Params.images 0 | relURL }}" alt="{{ .Title }}" />
+                            {{ else if .Params.image }}
+                            <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
                             {{ else }}
-                            <img src="/images/default.svg" alt="{{ .Title }}" />
+                            <img src="{{ " images/default.svg" | absURL }}" alt="{{ .Title }}" />
                             {{ end }}
                         </div>
                         <div class="row-info">

@@ -6,7 +6,7 @@
             {{ else if .Params.image }}
             <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
             {{ else }}
-            <img src="{{ " /images/sample1.jpg" | relURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
+            <img src="{{ " images/default.svg" | absURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
             {{ end }}
             <div class="news-badge">NEW</div>
         </div>

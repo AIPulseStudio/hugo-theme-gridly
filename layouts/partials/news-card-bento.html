@@ -6,7 +6,7 @@
             {{ else if .Params.image }}
             <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy" class="bento-img">
             {{ else }}
-            <img src="{{ " /images/sample2.jpg" | relURL }}" alt="{{ .Title }}" loading="lazy" class="bento-img">
+            <img src="{{ " images/default.svg" | absURL }}" alt="{{ .Title }}" loading="lazy" class="bento-img">
             {{ end }}
             <div class="card-gradient"></div>
             <div class="card-info">
