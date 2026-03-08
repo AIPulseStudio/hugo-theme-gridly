@@ -1,0 +1,83 @@
+{{- $hero := .Site.Params.hero -}}
+{{- $stats := $hero.stats -}}
+{{- $badge := $hero.badge | default $hero.title -}}
+<div class="page-header-widget">
+    {{ with $badge }}
+    <div class="ph-badge">{{ . }}</div>
+    {{ end }}
+    {{ with $stats }}
+    <div class="ph-stats">
+        {{ range . }}
+        <div class="ph-stat">
+            <span class="ph-stat-value">{{ .value }}</span>
+            <span class="ph-stat-label">{{ .label }}</span>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+
+<style>
+    .page-header-widget {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: -10px;
+    }
+
+    .ph-badge {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        padding: 10px 24px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: 0.5px;
+    }
+
+    .ph-stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .ph-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        padding: 12px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        min-width: 70px;
+    }
+
+    .ph-stat-value {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: white;
+        line-height: 1;
+    }
+
+    .ph-stat-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.75);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+        .page-header-widget {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .ph-stats {
+            gap: 12px;
+        }
+    }
+</style>
