@@ -1,0 +1,39 @@
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+<section class="bento-section container">
+    {{ partial "hero/hero.html" . }}
+
+    <div class="bento-grid">
+        {{ range first 1 $posts.ByDate.Reverse }}
+        <div class="bento-item bento-large">
+            {{ partial "news-card-bento.html" . }}
+        </div>
+        {{ end }} {{ range first 2 (after 1 $posts.ByDate.Reverse) }}
+        <div class="bento-item">{{ partial "news-card.html" . }}</div>
+        {{ end }}
+    </div>
+</section>
+
+<style>
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .bento-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    @media (max-width: 768px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .bento-large {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+    }
+</style>

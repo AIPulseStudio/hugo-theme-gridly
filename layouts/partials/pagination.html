@@ -1,0 +1,50 @@
+{{ if gt .Paginator.TotalPages 1 }}
+<nav class="pagination">
+    {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}" class="page-link">← Prev</a>
+    {{ end }}
+
+    <div class="page-numbers">
+        {{ range .Paginator.Pagers }}
+        <a
+            href="{{ .URL }}"
+            class="page-link {{ if eq . $.Paginator }}active{{ end }}"
+            >{{ .PageNumber }}</a
+        >
+        {{ end }}
+    </div>
+
+    {{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}" class="page-link">Next →</a>
+    {{ end }}
+</nav>
+{{ end }}
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .page-link {
+        padding: 0.75rem 1.25rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .page-link:hover,
+    .page-link.active {
+        background: var(--primary);
+        color: var(--white);
+        border-color: var(--primary);
+    }
+
+    .page-numbers {
+        display: flex;
+        gap: 0.5rem;
+    }
+</style>

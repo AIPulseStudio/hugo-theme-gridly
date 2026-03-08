@@ -1,0 +1,84 @@
+<div class="nav-wrapper">
+    <div class="container">
+        <nav class="navbar">
+            <a href="/" class="navbar-brand">
+                <div class="brand-icon">{{ .Site.Params.logo.emoji | default "⚽" }}</div>
+                <div class="brand-text">
+                    {{ .Site.Params.logo.title | default .Site.Title }}
+                    {{ if .Site.Params.logo.subtitle }}
+                    <span>{{ .Site.Params.logo.subtitle }}</span>
+                    {{ end }}
+                </div>
+            </a>
+            <ul class="navbar-menu">
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL | relURL }}" class="{{ if $.IsMenuCurrent " main" . }}active{{ end }}">{{ .Name
+                        }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<style>
+    .nav-wrapper {
+        background: var(--darker);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 30px var(--shadow-lg);
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .brand-text {
+        color: white;
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .brand-text span {
+        color: var(--secondary);
+        filter: brightness(1.2);
+    }
+
+    .navbar-menu {
+        display: flex;
+        gap: 5px;
+    }
+
+    .navbar-menu a {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .navbar-menu a:hover,
+    .navbar-menu a.active {
+        color: white;
+        background: var(--primary);
+    }
+</style>

@@ -1,0 +1,34 @@
+:root {
+    --primary: {{ .Site.Params.colors.primary | default "#6B2D91" }};
+    --primary-light: {{ .Site.Params.colors.primary_light | default "#8B4DB8" }};
+    --primary-dark: {{ .Site.Params.colors.primary_dark | default "#4A1A66" }};
+    --secondary: {{ .Site.Params.colors.secondary | default "#E91E63" }};
+    --accent: {{ .Site.Params.colors.accent | default "#FFD700" }};
+    --dark: {{ .Site.Params.colors.dark | default "#1a1a2e" }};
+    --darker: {{ .Site.Params.colors.darker | default "#0f0f1a" }};
+    --light: {{ .Site.Params.colors.light | default "#fafafa" }};
+    --gray: {{ .Site.Params.colors.gray | default "#757575" }};
+    --border: {{ .Site.Params.colors.border | default "#e0e0e0" }};
+    --shadow: {{ .Site.Params.colors.shadow | default "rgba(107, 45, 145, 0.1)" }};
+    --shadow-lg: {{ .Site.Params.colors.shadow_lg | default "rgba(107, 45, 145, 0.2)" }};
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: #f5f5f7;
+}
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+main {
+    min-height: calc(100vh - 400px);
+    padding: 30px 0;
+}

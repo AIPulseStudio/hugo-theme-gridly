@@ -1,0 +1,68 @@
+<div class="teams-grid">
+    {{ if .Site.Params.hero.teams }} {{ range .Site.Params.hero.teams }}
+    <div class="team-card">
+        <div class="team-logo">{{ .emoji | default "🎾" }}</div>
+        <div class="team-name">{{ .name }}</div>
+    </div>
+    {{ end }} {{ else }}
+    <!-- Fallback or empty -->
+    {{ end }}
+</div>
+
+<style>
+    .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin-top: -30px;
+        /* Overlap with hero for high-end look */
+        position: relative;
+        z-index: 10;
+        padding: 0 10px;
+    }
+
+    .team-card {
+        background: white;
+        padding: 25px 20px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border);
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px var(--shadow-lg);
+        border-color: var(--primary);
+    }
+
+    .team-logo {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+        line-height: 1;
+    }
+
+    .team-name {
+        font-weight: 800;
+        color: var(--dark);
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+        .teams-grid {
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 20px;
+        }
+
+        .team-card {
+            padding: 20px 15px;
+        }
+
+        .team-logo {
+            font-size: 2.2rem;
+        }
+    }
+</style>

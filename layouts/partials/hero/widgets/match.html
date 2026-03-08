@@ -1,0 +1,95 @@
+<div class="live-match-widget">
+    <div class="match-card">
+        <div class="live-label"><span class="dot"></span> LIVE</div>
+        <div class="teams">
+            <div class="team">
+                {{ .Site.Params.hero.match.home | default "Home Team" }}
+            </div>
+            <div class="score">
+                {{ .Site.Params.hero.match.score | default "0 - 0" }}
+            </div>
+            <div class="team">
+                {{ .Site.Params.hero.match.away | default "Away Team" }}
+            </div>
+        </div>
+        <div class="match-meta">
+            {{ .Site.Params.hero.match.time | default "HT" }}' - {{
+            .Site.Params.hero.match.venue }}
+        </div>
+    </div>
+</div>
+
+<style>
+    .live-match-widget {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .match-card {
+        background: var(--white);
+        color: var(--text);
+        padding: 1.5rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        min-width: 400px;
+    }
+
+    .live-label {
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--secondary);
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.4;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .teams {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .team {
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    .score {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--primary);
+    }
+
+    .match-meta {
+        font-size: 0.8rem;
+        color: var(--gray);
+        font-weight: 600;
+    }
+</style>

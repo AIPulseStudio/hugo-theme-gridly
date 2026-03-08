@@ -1,0 +1,129 @@
+<section class="hero-section container">
+    <div class="hero">
+        <div class="hero-content">
+            {{ with .Site.Params.hero.badge }}
+            <div class="hero-badge">{{ . }}</div>
+            {{ end }}
+            <h1 class="hero-title">
+                {{ .Site.Params.hero.title | safeHTML | default .Site.Title }}
+            </h1>
+            <p class="hero-subtitle">{{ .Site.Params.hero.subtitle }}</p>
+        </div>
+        <div class="hero-decoration">
+            <div class="hero-emoji">
+                {{ .Site.Params.logo.emoji | default "⚽" }}
+            </div>
+        </div>
+    </div>
+
+    {{ $widget := .Site.Params.hero.widget }} {{ if $widget }}
+    <div class="hero-widgets">
+        {{ partial (printf "hero/widgets/%s.html" $widget) . }}
+    </div>
+    {{ end }}
+</section>
+
+<style>
+    .hero {
+        position: relative;
+        padding: 80px 50px;
+        margin-bottom: 60px;
+        background: linear-gradient(
+            135deg,
+            var(--primary) 0%,
+            var(--primary-dark) 50%,
+            var(--secondary) 100%
+        );
+        border-radius: 30px;
+        overflow: hidden;
+        color: white;
+        box-shadow: 0 20px 50px var(--shadow-lg);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 700px;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 10px 25px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: white;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+    }
+
+    .hero-title span {
+        color: var(--accent);
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+    }
+
+    .hero-decoration {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.15;
+    }
+
+    .hero-emoji {
+        font-size: 15rem;
+        animation: hero-bounce 3s ease-in-out infinite;
+    }
+
+    @keyframes hero-bounce {
+        0%,
+        100% {
+            transform: translateY(0) scale(1);
+        }
+
+        50% {
+            transform: translateY(-30px) scale(1.1);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .hero-decoration {
+            display: none;
+        }
+
+        .hero {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+    }
+</style>

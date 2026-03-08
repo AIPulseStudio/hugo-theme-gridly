@@ -1,0 +1,102 @@
+<section class="news-section container">
+    {{ partial "hero/hero.html" . }}
+
+    <div class="section-header">
+        <h2 class="section-title">
+            {{ .Site.Params.home.title | default "Latest News" }}
+        </h2>
+        <div class="section-count">
+            <span class="count-number">{{ len (where .Site.RegularPages "Type" "posts") }}</span>
+            <span class="count-label">bài viết</span>
+        </div>
+    </div>
+
+    <div class="news-grid">
+        {{ $posts := where .Site.RegularPages "Type" "posts" }} {{ range first
+        12 $posts.ByDate.Reverse }} {{ partial "news-card.html" . }} {{ end }}
+    </div>
+</section>
+
+<style>
+    .news-section {
+        padding: 40px 0;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--dark);
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .section-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 40px;
+        background: linear-gradient(to bottom,
+                var(--primary),
+                var(--secondary));
+        border-radius: 3px;
+    }
+
+    .section-count {
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        color: var(--gray);
+    }
+
+    .count-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+    }
+
+    .count-label {
+        font-size: 0.9rem;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    /* Staggered Background Logic from wtamatch.net */
+    .news-grid article:nth-child(3n + 1) .news-card {
+        background: linear-gradient(135deg, #fff 0%, #f8f8ff 100%);
+    }
+
+    .news-grid article:nth-child(3n + 2) .news-card {
+        background: linear-gradient(135deg, #fff 0%, #fff8f8 100%);
+    }
+
+    .news-grid article:nth-child(3n + 3) .news-card {
+        background: linear-gradient(135deg, #fff 0%, #f8ffff 100%);
+    }
+
+    @media (max-width: 768px) {
+        .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .news-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

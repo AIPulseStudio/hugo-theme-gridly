@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default " vi-vn" }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {{ partial "seo.html" . }}
+
+    {{ $style := resources.Get "css/main.css" | resources.ExecuteAsTemplate "css/main.css" . }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+    {{ block "styles" . }}{{ end }}
+</head>
+
+<body>
+    {{ partial "header.html" . }}
+    <main>{{ block "main" . }}{{ end }}</main>
+    {{ partial "footer.html" . }}
+    {{ block "scripts" . }}{{ end }}
+</body>
+
+</html>

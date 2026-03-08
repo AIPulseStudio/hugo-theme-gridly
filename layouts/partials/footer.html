@@ -1,0 +1,84 @@
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Về chúng tôi</h4>
+                <p>{{ .Site.Params.description }}</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liên kết nhanh</h4>
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+                {{ end }}
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+            <div class="footer-col">
+                <h4>Theo dõi</h4>
+                {{ with .Site.Params.social.twitter }}<a href="{{ . }}" target="_blank">Twitter</a>{{ end }} {{ with
+                .Site.Params.social.instagram }}<a href="{{ . }}" target="_blank">Instagram</a>{{ end }} {{ with
+                .Site.Params.social.youtube }}<a href="{{ . }}" target="_blank">YouTube</a>{{ end }} {{ with
+                .Site.Params.social.facebook }}<a href="{{ . }}" target="_blank">Facebook</a>{{ end }}
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: var(--darker);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 80px 0 30px;
+        margin-top: 80px;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 50px;
+        margin-bottom: 50px;
+    }
+
+    .footer-col h4 {
+        color: white;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer-col p {
+        line-height: 1.8;
+        font-size: 0.95rem;
+    }
+
+    .footer-col a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+        color: var(--secondary);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .footer-grid {
+            gap: 35px;
+            text-align: center;
+        }
+    }
+</style>

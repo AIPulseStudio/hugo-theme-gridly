@@ -1,0 +1,92 @@
+<section class="sidebar-section container">
+    {{ partial "hero/hero.html" . }}
+
+    <div class="sidebar-layout">
+        <aside class="sidebar">
+            {{ range .Site.Params.home.sidebar_widgets | default (slice
+            "standings") }} {{ partial (printf "home/widgets/%s.html"
+            .) $ }} {{ end }}
+        </aside>
+
+        <div class="main-content">
+            <div class="article-list">
+                {{ range .Paginator.Pages }}
+                <article class="article-row">
+                    <a href="{{ .Permalink }}" class="row-link">
+                        <div class="row-thumb">
+                            {{ if .Params.images }}
+                            <img src="{{ index .Params.images 0 | relURL }}" alt="{{ .Title }}" />
+                            {{ else }}
+                            <img src="/images/default.svg" alt="{{ .Title }}" />
+                            {{ end }}
+                        </div>
+                        <div class="row-info">
+                            <h3>{{ .Title }}</h3>
+                            <p>{{ .Summary | truncate 150 }}</p>
+                            <span class="meta">{{ .Date.Format "02/01/2006" }}</span>
+                        </div>
+                    </a>
+                </article>
+                {{ end }} {{ partial "pagination.html" . }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .sidebar-layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+
+    .article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .article-row-link {
+        display: flex;
+        gap: 1.5rem;
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+    }
+
+    .row-thumb {
+        width: 220px;
+        height: 140px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .row-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .row-info h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .row-info p {
+        color: var(--gray);
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 992px) {
+        .sidebar-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            order: 2;
+        }
+    }
+</style>

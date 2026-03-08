@@ -1,0 +1,81 @@
+baseURL = 'https://wtamatch.net/'
+title = 'WTA Match'
+theme = 'hugo-theme-gridly'
+themesDir = '../..'
+enableRobotsTXT = true
+languageCode = 'en-us'
+
+[sitemap]
+  changefreq = 'daily'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[params]
+  description = 'Latest tennis news, WTA rankings, and match schedules.'
+  keywords = 'tennis, wta, rankings, news'
+  mainSections = ['posts']
+
+[params.logo]
+  emoji = '🎾'
+  title = 'WTA'
+  subtitle = 'Tennis'
+
+[params.colors]
+  # Exact colors from wtamatch.net CSS
+  primary = '#6B2D91'
+  primary_light = '#8B4DB8'
+  primary_dark = '#4A1A66'
+  secondary = '#E91E63'
+  accent = '#FFD700'
+  dark = '#1a1a2e'
+  darker = '#0f0f1a'
+  light = '#fafafa'
+  gray = '#757575'
+  border = '#e0e0e0'
+  shadow = 'rgba(107, 45, 145, 0.1)'
+  shadow_lg = 'rgba(107, 45, 145, 0.2)'
+
+[params.home]
+  layout = 'grid'
+  title = 'Latest News'
+
+[params.hero]
+  badge = '🎾 Official WTA News'
+  title = "Women's Tennis Professional"
+  subtitle = 'Latest updates on Zheng Qinwen, Iga Swiatek, Aryna Sabalenka and more.'
+  widget = 'teams'
+
+[[params.hero.teams]]
+  name = 'Zheng Qinwen'
+  emoji = '🇨🇳'
+[[params.hero.teams]]
+  name = 'Iga Swiatek'
+  emoji = '🇵🇱'
+[[params.hero.teams]]
+  name = 'Aryna Sabalenka'
+  emoji = '🇧🇾'
+[[params.hero.teams]]
+  name = 'Coco Gauff'
+  emoji = '🇺🇸'
+[[params.hero.teams]]
+  name = 'Elena Rybakina'
+  emoji = '🇰🇿'
+[[params.hero.teams]]
+  name = 'Jessica Pegula'
+  emoji = '🇺🇸'
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 10
+  [[menu.main]]
+    name = 'News'
+    url = '/posts'
+    weight = 20
+
+[params.social]
+  facebook = "https://facebook.com/WTA"
+  twitter = "https://twitter.com/WTA"
+  instagram = "https://instagram.com/wta"
+  youtube = "https://youtube.com/wta"

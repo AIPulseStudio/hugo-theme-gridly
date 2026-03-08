@@ -1,0 +1,2 @@
+{{ define "main" }} {{ $layout := .Site.Params.home.layout | default "grid" }}
+{{ partial (printf "home/%s.html" $layout) . }} {{ end }}

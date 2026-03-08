@@ -1,0 +1,235 @@
+{{ define "main" }}
+<div class="container">
+    <article class="article">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="article-meta">
+                {{ if .Params.category }}
+                <span class="article-category">{{ .Params.category }}</span>
+                {{ end }}
+                <span class="article-date">📅 {{ .Date.Format "02.01.2006" }}</span>
+            </div>
+            <h1 class="article-title">{{ .Title }}</h1>
+            {{ if .Description }}
+            <p class="article-excerpt">{{ .Description }}</p>
+            {{ end }}
+        </header>
+
+
+
+        <!-- Article Content -->
+        <div class="article-content">
+            {{ .Content }}
+        </div>
+
+        <!-- Tags -->
+        {{ if .Params.tags }}
+        <div class="article-tags">
+            <span class="tags-icon">🏷️</span>
+            <div class="tags-list">
+                {{ range .Params.tags }}
+                <span class="tag">{{ . }}</span>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Share -->
+        <div class="share-section">
+            <span class="share-label">Chia sẻ bài viết：</span>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank"
+                    class="share-btn share-twitter">X</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank"
+                    class="share-btn share-facebook">FB</a>
+            </div>
+        </div>
+
+        <!-- Related Posts -->
+        {{ $related := .Site.RegularPages.Related . | first 4 }}
+        {{ if gt (len $related) 0 }}
+        <div class="related-section">
+            <h3 class="related-title">Bài viết liên quan</h3>
+            <div class="related-grid">
+                {{ range $related }}
+                <a href="{{ .Permalink }}" class="related-card">
+                    <div class="related-image">
+                        {{ if .Params.images }}{{ with index .Params.images 0 }}<img src="{{ . | relURL }}"
+                            alt="{{ $.Title }}">{{ end }}
+                        {{ else if .Params.image }}<img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                        {{ else }}<img src="{{ " /images/sample1.jpg" | relURL }}" alt="{{ .Title }}">
+                        {{ end }}
+                    </div>
+                    <h4>{{ .Title }}</h4>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </article>
+</div>
+{{ end }}
+
+{{ define "styles" }}
+<style>
+    .article {
+        max-width: 900px;
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+
+    .article-header {
+        text-align: center;
+        padding: 40px 20px;
+        margin-bottom: 40px;
+        background: linear-gradient(135deg, rgba(107, 45, 145, 0.05) 0%, rgba(233, 30, 99, 0.05) 100%);
+        border-radius: 24px;
+    }
+
+    .article-meta {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .article-category {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    .article-date {
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    .article-title {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--dark);
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .featured-image {
+        border-radius: 24px;
+        overflow: hidden;
+        margin-bottom: 50px;
+        box-shadow: 0 20px 60px var(--shadow-lg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .featured-image img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+    }
+
+    .article-content {
+        font-size: 1.2rem;
+        line-height: 1.9;
+        color: var(--dark);
+        margin-bottom: 60px;
+    }
+
+    .article-content img {
+        display: block;
+        margin: 30px auto;
+        max-width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .article-content h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin: 40px 0 20px;
+    }
+
+    .article-content p {
+        margin-bottom: 25px;
+    }
+
+    .share-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 25px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px var(--shadow);
+        margin-bottom: 50px;
+    }
+
+    .share-btn {
+        padding: 8px 20px;
+        border-radius: 50px;
+        color: white;
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    .share-twitter {
+        background: #000;
+    }
+
+    .share-facebook {
+        background: #1877F2;
+    }
+
+    .related-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 30px;
+        border-left: 5px solid var(--primary);
+        padding-left: 20px;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .related-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .related-image {
+        height: 160px;
+        overflow: hidden;
+    }
+
+    .related-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .related-card h4 {
+        padding: 15px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .article-title {
+            font-size: 2rem;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{{ end }}

@@ -1,0 +1,14 @@
+:root {
+    --primary: {{ .Site.Params.colors.primary | default "#6B2D91" }};
+    --primary-light: {{ .Site.Params.colors.primary_light | default "#8B4DB8" }};
+    --primary-dark: {{ .Site.Params.colors.primary_dark | default "#4A1A66" }};
+    --secondary: {{ .Site.Params.colors.secondary | default "#E91E63" }};
+    --accent: {{ .Site.Params.colors.accent | default "#FFD700" }};
+    --dark: {{ .Site.Params.colors.dark | default "#1a1a2e" }};
+    --darker: {{ .Site.Params.colors.darker | default "#0f0f1a" }};
+    --light: {{ .Site.Params.colors.light | default "#fafafa" }};
+    --gray: {{ .Site.Params.colors.gray | default "#757575" }};
+    --border: {{ .Site.Params.colors.border | default "#e0e0e0" }};
+    --shadow: {{ .Site.Params.colors.shadow | default "rgba(107, 45, 145, 0.1)" }};
+    --shadow-lg: {{ .Site.Params.colors.shadow_lg | default "rgba(107, 45, 145, 0.2)" }};
+}

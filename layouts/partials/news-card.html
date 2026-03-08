@@ -1,0 +1,137 @@
+<article class="news-item">
+    <a href="{{ .Permalink }}" class="news-card">
+        <div class="news-image-wrapper">
+            {{ if .Params.images }}
+            <img src="{{ index .Params.images 0 | relURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
+            {{ else if .Params.image }}
+            <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
+            {{ else }}
+            <img src="{{ " /images/sample1.jpg" | relURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
+            {{ end }}
+            <div class="news-badge">NEW</div>
+        </div>
+        <div class="news-info">
+            <div class="news-meta">
+                <span class="news-date">{{ .Date.Format "01.02.2006" }}</span>
+                {{ if .Params.category }}
+                <span class="news-category">{{ .Params.category }}</span>
+                {{ end }}
+            </div>
+            <h3 class="news-title">{{ .Title }}</h3>
+        </div>
+    </a>
+</article>
+
+<style>
+    .news-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 10px 40px var(--shadow);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .news-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+    }
+
+    .news-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .news-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px var(--shadow-lg);
+    }
+
+    .news-image-wrapper {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        aspect-ratio: 16/10;
+    }
+
+    .news-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .news-card:hover .news-image {
+        transform: scale(1.1);
+    }
+
+    .news-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(107, 45, 145, 0.3);
+        z-index: 2;
+    }
+
+    .news-info {
+        padding: 5px;
+    }
+
+    .news-meta {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+    }
+
+    .news-date {
+        color: var(--gray);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .news-date::before {
+        content: '📅';
+    }
+
+    .news-category {
+        color: var(--primary);
+        background: rgba(107, 45, 145, 0.1);
+        padding: 4px 14px;
+        border-radius: 15px;
+        font-weight: 600;
+    }
+
+    .news-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+    }
+</style>

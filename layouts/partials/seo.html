@@ -1,0 +1,62 @@
+<title>
+    {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title
+    }}{{ end }}
+</title>
+<meta
+    name="description"
+    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+/>
+<meta
+    name="keywords"
+    content="{{ if .Params.keywords }}{{ .Params.keywords }}{{ else }}{{ .Site.Params.keywords }}{{ end }}"
+/>
+<meta name="author" content="{{ .Site.Params.author }}" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta
+    property="og:description"
+    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+/>
+{{ with .Params.images }}{{ range first 1 . }}
+<meta property="og:image" content="{{ . | absURL }}" />{{ end }}{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta
+    name="twitter:description"
+    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+/>
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ .Permalink }}" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+<!-- RSS -->
+{{ with .OutputFormats.Get "RSS" }}
+<link
+    rel="{{ .Rel }}"
+    type="{{ .MediaType.Type }}"
+    href="{{ .Permalink }}"
+    title="{{ $.Site.Title }}"
+/>{{ end }}
+
+<!-- Google Analytics -->
+{{ if .Site.Config.Services.GoogleAnalytics.ID }}
+<script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Config.Services.GoogleAnalytics.ID }}"
+></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "{{ .Site.Config.Services.GoogleAnalytics.ID }}");
+</script>
+{{ end }}

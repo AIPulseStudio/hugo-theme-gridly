@@ -1,0 +1,6 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F5F8FA"/>
+  <rect x="200" y="150" width="400" height="300" rx="20" fill="#004D98" fill-opacity="0.1"/>
+  <path d="M400 250V350M350 300H450" stroke="#004D98" stroke-width="4" stroke-linecap="round"/>
+  <text x="400" y="400" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#004D98">Gridly Theme</text>
+</svg>

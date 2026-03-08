@@ -1,0 +1,36 @@
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+<section class="featured-section container">
+    {{ partial "hero/hero.html" . }}
+
+    <div class="featured-row">
+        {{ range first 3 $posts.ByDate.Reverse }} {{ partial "news-card.html" .
+        }} {{ end }}
+    </div>
+
+    <div class="news-grid mt-4">
+        {{ range first 8 (after 3 $posts.ByDate.Reverse) }} {{ partial
+        "news-card.html" . }} {{ end }}
+    </div>
+</section>
+
+<style>
+    .featured-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: -3rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .mt-4 {
+        margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+        .featured-row {
+            grid-template-columns: 1fr;
+            margin-top: 2rem;
+        }
+    }
+</style>
