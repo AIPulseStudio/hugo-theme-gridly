@@ -36,6 +36,7 @@ languageCode = 'en-us'
   shadow_lg = 'rgba(107, 45, 145, 0.2)'
 
 [params.home]
+  # layout: grid, bento, featured, list-sidebar
   layout = 'grid'
   title = 'Latest News'
 
@@ -43,7 +44,10 @@ languageCode = 'en-us'
   badge = '🎾 Official WTA News'
   title = "Women's Tennis Professional"
   subtitle = 'Latest updates on Zheng Qinwen, Iga Swiatek, Aryna Sabalenka and more.'
-  widget = 'teams'
+  # Hero Widget: teams, match, stars, page-header
+  widget = 'stars'
+  # Hero Styles: classic (default), centered, glass, modern-split, bold-news
+  style = 'classic'
 
 [[params.hero.teams]]
   name = 'Zheng Qinwen'

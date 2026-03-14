@@ -1,5 +1,9 @@
-<section class="hero-section container">
+{{ $style := .Site.Params.hero.style | default "classic" }} {{ $widget :=
+.Site.Params.hero.widget }}
+<section class="hero-section container hero-style-{{ $style }}">
     <div class="hero">
+        {{ if eq $widget "stars" }} {{ partial "hero/widgets/stars.html" . }} {{
+        end }}
         <div class="hero-content">
             {{ with .Site.Params.hero.badge }}
             <div class="hero-badge">{{ . }}</div>
@@ -16,7 +20,7 @@
         </div>
     </div>
 
-    {{ $widget := .Site.Params.hero.widget }} {{ if $widget }}
+    {{ if and $widget (ne $widget "stars") }}
     <div class="hero-widgets">
         {{ partial (printf "hero/widgets/%s.html" $widget) . }}
     </div>
@@ -24,6 +28,7 @@
 </section>
 
 <style>
+    /* Base Styles & Classic (Default) */
     .hero {
         position: relative;
         padding: 80px 50px;
@@ -38,12 +43,14 @@
         overflow: hidden;
         color: white;
         box-shadow: 0 20px 50px var(--shadow-lg);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
         max-width: 700px;
+        animation: hero-fade-in 0.8s ease-out;
     }
 
     .hero-badge {
@@ -56,6 +63,7 @@
         font-size: 0.9rem;
         font-weight: 600;
         margin-bottom: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero-title {
@@ -64,7 +72,7 @@
         color: white;
         line-height: 1.1;
         margin-bottom: 20px;
-        letter-spacing: -1px;
+        letter-spacing: -1.5px;
     }
 
     .hero-title span {
@@ -73,9 +81,10 @@
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         color: rgba(255, 255, 255, 0.9);
         line-height: 1.6;
+        font-weight: 400;
     }
 
     .hero-decoration {
@@ -91,12 +100,131 @@
         animation: hero-bounce 3s ease-in-out infinite;
     }
 
+    /* Style: Centered */
+    .hero-style-centered .hero {
+        text-align: center;
+        padding: 100px 40px;
+        background: linear-gradient(
+            180deg,
+            var(--primary-dark) 0%,
+            var(--primary) 100%
+        );
+    }
+    .hero-style-centered .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .hero-style-centered .hero-decoration {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-bottom: 30px;
+        opacity: 0.2;
+        display: block;
+    }
+    .hero-style-centered .hero-emoji {
+        font-size: 8rem;
+    }
+
+    /* Style: Glass */
+    .hero-style-glass .hero {
+        background: linear-gradient(
+            45deg,
+            var(--primary) 0%,
+            var(--secondary) 100%
+        );
+        padding: 80px 50px;
+    }
+    .hero-style-glass .hero::before {
+        content: "";
+        position: absolute;
+        inset: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        z-index: 1;
+    }
+
+    /* Style: Modern Split */
+    .hero-style-modern-split .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--darker);
+        border: 1px solid var(--border);
+    }
+    .hero-style-modern-split .hero::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40%;
+        height: 100%;
+        background: var(--primary);
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+        opacity: 0.8;
+    }
+    .hero-style-modern-split .hero-decoration {
+        opacity: 1;
+        z-index: 2;
+        right: 100px;
+    }
+    .hero-style-modern-split .hero-emoji {
+        font-size: 12rem;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    }
+
+    /* Style: Bold News */
+    .hero-style-bold-news .hero {
+        background: white;
+        color: var(--darker);
+        border-radius: 0;
+        padding: 60px 0;
+        box-shadow: none;
+        border-bottom: 5px solid var(--primary);
+    }
+    .hero-style-bold-news .hero-title {
+        color: var(--darker);
+        font-size: 4.5rem;
+        text-transform: uppercase;
+        letter-spacing: -3px;
+    }
+    .hero-style-bold-news .hero-subtitle {
+        color: var(--gray);
+        font-weight: 600;
+        border-left: 4px solid var(--secondary);
+        padding-left: 20px;
+    }
+    .hero-style-bold-news .hero-badge {
+        background: var(--primary);
+        color: white;
+    }
+    .hero-style-bold-news .hero-decoration {
+        display: none;
+    }
+
+    .hero-style-stars .hero-decoration {
+        opacity: 0.1;
+    }
+
+    @keyframes hero-fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     @keyframes hero-bounce {
         0%,
         100% {
             transform: translateY(0) scale(1);
         }
-
         50% {
             transform: translateY(-30px) scale(1.1);
         }
@@ -106,24 +234,28 @@
         .hero-decoration {
             display: none;
         }
-
         .hero {
             padding: 60px 40px;
             text-align: center;
         }
-
         .hero-content {
             max-width: 100%;
+        }
+        .hero-style-modern-split .hero::after {
+            display: none;
         }
     }
 
     @media (max-width: 768px) {
         .hero-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
         }
-
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
+        }
+        .hero-style-bold-news .hero-title {
+            font-size: 3rem;
+            letter-spacing: -1px;
         }
     }
 </style>
