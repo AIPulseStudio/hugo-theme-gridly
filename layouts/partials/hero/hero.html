@@ -110,10 +110,12 @@
             var(--primary) 100%
         );
     }
+
     .hero-style-centered .hero-content {
         max-width: 900px;
         margin: 0 auto;
     }
+
     .hero-style-centered .hero-decoration {
         position: relative;
         right: auto;
@@ -123,6 +125,7 @@
         opacity: 0.2;
         display: block;
     }
+
     .hero-style-centered .hero-emoji {
         font-size: 8rem;
     }
@@ -136,6 +139,7 @@
         );
         padding: 80px 50px;
     }
+
     .hero-style-glass .hero::before {
         content: "";
         position: absolute;
@@ -155,6 +159,7 @@
         background: var(--darker);
         border: 1px solid var(--border);
     }
+
     .hero-style-modern-split .hero::after {
         content: "";
         position: absolute;
@@ -166,11 +171,13 @@
         clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
         opacity: 0.8;
     }
+
     .hero-style-modern-split .hero-decoration {
         opacity: 1;
         z-index: 2;
         right: 100px;
     }
+
     .hero-style-modern-split .hero-emoji {
         font-size: 12rem;
         filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
@@ -185,22 +192,56 @@
         box-shadow: none;
         border-bottom: 5px solid var(--primary);
     }
+
     .hero-style-bold-news .hero-title {
         color: var(--darker);
         font-size: 4.5rem;
         text-transform: uppercase;
         letter-spacing: -3px;
     }
+
     .hero-style-bold-news .hero-subtitle {
         color: var(--gray);
         font-weight: 600;
         border-left: 4px solid var(--secondary);
         padding-left: 20px;
     }
+
     .hero-style-bold-news .hero-badge {
         background: var(--primary);
         color: white;
     }
+
+    /* Style Specific Emoji Customizations */
+    .hero-style-centered .hero-emoji {
+        font-size: 8rem;
+        animation: hero-pulse 4s ease-in-out infinite;
+        opacity: 0.3;
+    }
+
+    .hero-style-glass .hero-emoji {
+        animation: hero-float-glass 6s ease-in-out infinite;
+        filter: blur(2px);
+        opacity: 0.2;
+    }
+
+    .hero-style-modern-split .hero-emoji {
+        font-size: 12rem;
+        animation: hero-rotate 15s linear infinite;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        opacity: 0.4;
+    }
+
+    .hero-style-bold-news .hero-emoji {
+        font-size: 5rem;
+        animation: none;
+        opacity: 0.1;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transform: rotate(-15deg);
+    }
+
     .hero-style-bold-news .hero-decoration {
         display: none;
     }
@@ -214,6 +255,7 @@
             opacity: 0;
             transform: translateY(20px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -225,8 +267,47 @@
         100% {
             transform: translateY(0) scale(1);
         }
+
         50% {
             transform: translateY(-30px) scale(1.1);
+        }
+    }
+
+    @keyframes hero-pulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+
+        50% {
+            transform: scale(1.15);
+            opacity: 0.5;
+        }
+    }
+
+    @keyframes hero-float-glass {
+        0%,
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        33% {
+            transform: translate(20px, -20px) rotate(5deg);
+        }
+
+        66% {
+            transform: translate(-10px, 15px) rotate(-3deg);
+        }
+    }
+
+    @keyframes hero-rotate {
+        from {
+            transform: rotate(0deg) translateY(0);
+        }
+
+        to {
+            transform: rotate(360deg) translateY(0);
         }
     }
 
@@ -234,13 +315,16 @@
         .hero-decoration {
             display: none;
         }
+
         .hero {
             padding: 60px 40px;
             text-align: center;
         }
+
         .hero-content {
             max-width: 100%;
         }
+
         .hero-style-modern-split .hero::after {
             display: none;
         }
@@ -250,9 +334,11 @@
         .hero-title {
             font-size: 2.5rem;
         }
+
         .hero-subtitle {
             font-size: 1.1rem;
         }
+
         .hero-style-bold-news .hero-title {
             font-size: 3rem;
             letter-spacing: -1px;
