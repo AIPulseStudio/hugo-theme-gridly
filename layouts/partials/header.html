@@ -4,9 +4,9 @@
             <a href="/" class="navbar-brand">
                 <div class="brand-icon">{{ .Site.Params.logo.emoji | default "⚽" }}</div>
                 <div class="brand-text">
-                    {{ .Site.Params.logo.title | default .Site.Title }}
-                    {{ if .Site.Params.logo.subtitle }}
-                    <span>{{ .Site.Params.logo.subtitle }}</span>
+                    {{ .Site.Params.logo.text | default .Site.Title }}
+                    {{ if .Site.Params.logo.suffix }}
+                    <span>{{ .Site.Params.logo.suffix }}</span>
                     {{ end }}
                 </div>
             </a>

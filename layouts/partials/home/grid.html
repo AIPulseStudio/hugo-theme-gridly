@@ -3,7 +3,7 @@
 
     <div class="section-header">
         <h2 class="section-title">
-            {{ .Site.Params.home.title | default "Latest News" }}
+            {{ .Site.Params.home.heading | default "Latest News" }}
         </h2>
         <div class="section-count">
             <span class="count-number">{{ len (where .Site.RegularPages "Type" "posts") }}</span>

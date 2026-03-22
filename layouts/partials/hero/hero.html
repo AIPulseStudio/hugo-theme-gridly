@@ -9,9 +9,9 @@
             <div class="hero-badge">{{ . }}</div>
             {{ end }}
             <h1 class="hero-title">
-                {{ .Site.Params.hero.title | safeHTML | default .Site.Title }}
+                {{ .Site.Params.hero.headline | safeHTML | default .Site.Title }}
             </h1>
-            <p class="hero-subtitle">{{ .Site.Params.hero.subtitle }}</p>
+            <p class="hero-subtitle">{{ .Site.Params.hero.description }}</p>
         </div>
         <div class="hero-decoration">
             <div class="hero-emoji">

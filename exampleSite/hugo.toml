@@ -17,8 +17,8 @@ languageCode = 'en-us'
 
 [params.logo]
   emoji = '🎾'
-  title = 'WTA'
-  subtitle = 'Tennis'
+  text = 'WTA'
+  suffix = 'Tennis'
 
 [params.colors]
   # Exact colors from wtamatch.net CSS
@@ -38,12 +38,12 @@ languageCode = 'en-us'
 [params.home]
   # layout: grid, bento, featured, list-sidebar
   layout = 'grid'
-  title = 'Latest News'
+  heading = 'Latest News'
 
 [params.hero]
   badge = '🎾 Official WTA News'
-  title = "Women's Tennis Professional"
-  subtitle = 'Latest updates on Zheng Qinwen, Iga Swiatek, Aryna Sabalenka and more.'
+  headline = "Women's Tennis Professional"
+  description = 'Latest updates on Zheng Qinwen, Iga Swiatek, Aryna Sabalenka and more.'
   # Hero Widget: teams, match, stars, page-header
   widget = 'stars'
   # Hero Styles: classic (default), centered, glass, modern-split, bold-news
