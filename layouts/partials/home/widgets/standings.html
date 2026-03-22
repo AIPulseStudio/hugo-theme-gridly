@@ -13,6 +13,7 @@
 <div class="sidebar-widget">
     <h3 class="widget-title">{{ $title }}</h3>
     <div class="standings-compact">
+        {{ if $standings }}
         {{ range first 8 $standings }}
         {{- $pos := .pos | int -}}
         <div class="s-item s-{{ $pos }}">
@@ -21,7 +22,7 @@
             <span class="s-pts">{{ .pts }}</span>
         </div>
         {{ end }}
-        {{ if not $standings }}
+        {{ else }}
         <div class="placeholder-stat">No standings data</div>
         {{ end }}
     </div>

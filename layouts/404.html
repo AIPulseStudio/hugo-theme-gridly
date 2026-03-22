@@ -1,0 +1,160 @@
+{{ define "main" }}
+{{ $layout := .Site.Params.home.layout | default "grid" }}
+
+{{ if eq $layout "list-sidebar" }}
+<section class="sidebar-section container">
+    {{ partial "hero/hero.html" . }}
+    <div class="sidebar-layout">
+        <aside class="sidebar">
+            {{ range .Site.Params.home.sidebar_widgets | default (slice "standings") }}
+                {{ partial (printf "home/widgets/%s.html" .) $ }}
+            {{ end }}
+        </aside>
+        <div class="main-content">
+            {{ template "404-message" . }}
+        </div>
+    </div>
+</section>
+
+{{ else if eq $layout "bento" }}
+<section class="bento-section container">
+    {{ partial "hero/hero.html" . }}
+    <div class="bento-grid">
+        <div class="bento-item bento-large" style="display: flex;">
+            {{ template "404-message" . }}
+        </div>
+    </div>
+</section>
+
+{{ else }}
+<!-- grid and featured -->
+<section class="news-section container">
+    {{ partial "hero/hero.html" . }}
+    {{ template "404-message" . }}
+</section>
+{{ end }}
+{{ end }}
+
+{{ define "404-message" }}
+<div class="not-found-container">
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">Không tìm thấy trang</h2>
+    <p class="error-message">Xin lỗi, trang bạn đang tìm kiếm không tồn tại, đã bị xóa, đổi tên hoặc tạm thời không truy cập được.</p>
+    <a href="{{ .Site.BaseURL }}" class="home-button">Trở về Trang chủ</a>
+</div>
+{{ end }}
+
+{{ define "styles" }}
+<style>
+    .not-found-container {
+        text-align: center;
+        padding: 60px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px var(--shadow, rgba(0,0,0,0.05));
+    }
+
+    .news-section .not-found-container {
+        margin-top: 40px;
+        padding: 100px 20px;
+        min-height: 50vh;
+    }
+
+    .error-code {
+        font-size: 8rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--primary, #6b2d91), var(--secondary, #e91e63));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .error-title {
+        font-size: 2rem;
+        color: var(--dark, #333);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: 800;
+    }
+
+    .error-message {
+        color: var(--gray, #777);
+        font-size: 1.1rem;
+        max-width: 500px;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .home-button {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary, #6b2d91), var(--secondary, #e91e63));
+        color: white !important;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 10px 20px var(--shadow, rgba(0,0,0,0.1));
+        transition: all 0.3s ease;
+    }
+
+    .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px var(--shadow-lg, rgba(0,0,0,0.15));
+        color: white !important;
+    }
+
+    @media (max-width: 768px) {
+        .error-code {
+            font-size: 6rem;
+        }
+        .error-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Layout-specific styles for 404 page */
+    /* list-sidebar */
+    .sidebar-layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+    @media (max-width: 992px) {
+        .sidebar-layout {
+            grid-template-columns: 1fr;
+        }
+        .sidebar {
+            order: 2;
+        }
+    }
+
+    /* bento */
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    .bento-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    @media (max-width: 768px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+        }
+        .bento-large {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+    }
+</style>
+{{ end }}
