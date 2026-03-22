@@ -2,9 +2,8 @@
 <div class="container">
     <!-- Page Header -->
     <div class="page-header">
-        <h1 class="page-title">{{ if eq .Kind "section" }}Danh sách tin tức{{ else }}{{ .Title }}{{ end }}</h1>
-        <p class="page-subtitle">{{ if .Params.description }}{{ .Params.description }}{{ else }}Tin tức mới nhất về quần
-            vợt nữ WTA{{ end }}</p>
+        <h1 class="page-title">{{ if eq .Kind "section" }}{{ i18n "news_list" }}{{ else }}{{ .Title }}{{ end }}</h1>
+        <p class="page-subtitle">{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ i18n "default_list_description" }}{{ end }}</p>
     </div>
 
     <!-- News List -->
@@ -46,8 +45,8 @@
     {{ if eq (len .Pages) 0 }}
     <div class="empty-state">
         <div class="empty-icon">🎾</div>
-        <h3>Chưa có bài viết</h3>
-        <p>Chưa có nội dung trong danh mục này</p>
+        <h3>{{ i18n "no_articles" }}</h3>
+        <p>{{ i18n "no_content_in_category" }}</p>
     </div>
     {{ end }}
 </div>

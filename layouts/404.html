@@ -38,9 +38,9 @@
 {{ define "404-message" }}
 <div class="not-found-container">
     <h1 class="error-code">404</h1>
-    <h2 class="error-title">Không tìm thấy trang</h2>
-    <p class="error-message">Xin lỗi, trang bạn đang tìm kiếm không tồn tại, đã bị xóa, đổi tên hoặc tạm thời không truy cập được.</p>
-    <a href="{{ .Site.BaseURL }}" class="home-button">Trở về Trang chủ</a>
+    <h2 class="error-title">{{ i18n "404_title" }}</h2>
+    <p class="error-message">{{ i18n "404_message" }}</p>
+    <a href="{{ .Site.BaseURL }}" class="home-button">{{ i18n "back_to_home" }}</a>
 </div>
 {{ end }}
 

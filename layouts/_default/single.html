@@ -36,7 +36,7 @@
 
         <!-- Share -->
         <div class="share-section">
-            <span class="share-label">Chia sẻ bài viết：</span>
+            <span class="share-label">{{ i18n "share_article" }}</span>
             <div class="share-buttons">
                 <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank"
                     class="share-btn share-twitter">X</a>
@@ -49,7 +49,7 @@
         {{ $related := .Site.RegularPages.Related . | first 4 }}
         {{ if gt (len $related) 0 }}
         <div class="related-section">
-            <h3 class="related-title">Bài viết liên quan</h3>
+            <h3 class="related-title">{{ i18n "related_articles" }}</h3>
             <div class="related-grid">
                 {{ range $related }}
                 <a href="{{ .Permalink }}" class="related-card">

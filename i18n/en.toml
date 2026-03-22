@@ -1,0 +1,50 @@
+[404_title]
+other = "Page Not Found"
+
+[404_message]
+other = "Sorry, the page you are looking for does not exist, has been removed, name changed or is temporarily unavailable."
+
+[back_to_home]
+other = "Back to Home"
+
+[about_us]
+other = "About Us"
+
+[quick_links]
+other = "Quick Links"
+
+[follow_us]
+other = "Follow Us"
+
+[news_list]
+other = "News List"
+
+[default_list_description]
+other = "Latest news about WTA women's tennis"
+
+[no_articles]
+other = "No articles yet"
+
+[no_content_in_category]
+other = "No content in this category yet"
+
+[share_article]
+other = "Share article:"
+
+[related_articles]
+other = "Related articles"
+
+[articles_count_label]
+other = "articles"
+
+[prev]
+other = "Prev"
+
+[next]
+other = "Next"
+
+[new_badge]
+other = "NEW"
+
+[no_standings_data]
+other = "No standings data"

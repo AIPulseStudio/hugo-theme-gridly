@@ -8,7 +8,7 @@
             {{ else }}
             <img src="{{ " images/default.svg" | absURL }}" alt="{{ .Title }}" loading="lazy" class="news-image">
             {{ end }}
-            <div class="news-badge">NEW</div>
+            <div class="news-badge">{{ i18n "new_badge" }}</div>
         </div>
         <div class="news-info">
             <div class="news-meta">

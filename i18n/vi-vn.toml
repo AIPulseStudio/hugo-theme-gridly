@@ -1,0 +1,50 @@
+[404_title]
+other = "Không tìm thấy trang"
+
+[404_message]
+other = "Xin lỗi, trang bạn đang tìm kiếm không tồn tại, đã bị xóa, đổi tên hoặc tạm thời không truy cập được."
+
+[back_to_home]
+other = "Trở về Trang chủ"
+
+[about_us]
+other = "Về chúng tôi"
+
+[quick_links]
+other = "Liên kết nhanh"
+
+[follow_us]
+other = "Theo dõi"
+
+[news_list]
+other = "Danh sách tin tức"
+
+[default_list_description]
+other = "Tin tức mới nhất về quần vợt nữ WTA"
+
+[no_articles]
+other = "Chưa có bài viết"
+
+[no_content_in_category]
+other = "Chưa có nội dung trong danh mục này"
+
+[share_article]
+other = "Chia sẻ bài viết："
+
+[related_articles]
+other = "Bài viết liên quan"
+
+[articles_count_label]
+other = "bài viết"
+
+[prev]
+other = "Trở lại"
+
+[next]
+other = "Tiếp theo"
+
+[new_badge]
+other = "MỚI"
+
+[no_standings_data]
+other = "Không có dữ liệu"
